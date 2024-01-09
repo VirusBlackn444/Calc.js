@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="estilo.css">
+    <title>Calculadora</title>
+    <style>
+        :root{
+            --cor0: #4ACEF0;
+            --cor1: #2289A3;
+            --cor2: #F0E032;
+            --cor3: #A3992A;
+            --cor4: #F00053;
+        }
+        body{
+            background-image: linear-gradient(to right, var(--cor0) 50% , var(--cor1));
+        }
+        div#corpo_da_calculadora{
+            position: absolute;
+            display: inline-block;
+            top: 30%;
+            left: 40%;
+            background-color: white;
+            border-radius: 5px;
+            border: 2px solid var(--cor3);
+            text-align: left;
+            padding: 2px;
+        }
+        input#tela{
+            display: block;
+            width: 200px;
+            background-color: white;
+            font-weight: normal;
+            border: 1px solid rgba(0, 0, 0, 0.322);
+            margin: 3px;
+            text-align: right;
+            height: 50px;
+            line-height: 50px;
+            font-size: 50px;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        input{
+            background-color: var(--cor0);
+            box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.342);
+            border: 2px solid var(--cor2);
+            color: var(--cor3);
+            padding: 15px;
+            margin: 1px;
+            font-family: monospace;
+            font-weight: bolder;
+        }
+        input:hover{
+            background-color: white;
+        }
+        input#igual{
+            width: 180px;
+        }
+        input#del{
+            width: 87px;
+        }
+        input.ac{
+            background-color: var(--cor1);
+        }
+
+        input.ac:hover{
+            background-color: white;
+        }
+    </style>
+</head>
+<script>
+    var cont = 0
+    function print(n){
+        var tela = document.querySelector("input#tela")
+        if (tela.value.length < 16 && !isNaN(n) || isNaN(n)){
+            tela.value += n
+            cont += 1
+        }
+        if (tela.value.length <= 7){
+            tela.style.fontSize = '50px'
+        }
+        else if (tela.value.length > 7 && tela.value.length <= 13 ){
+            tela.style.fontSize = '30px'
+        }else if(tela.value.length > 13){
+            tela.style.fontSize = '20px'
+        }
+    }
+</script>
+<body>
+    <div id="corpo_da_calculadora">
+        <input type="text" id="tela" readonly>
+
+
+        <input type="button" value="1" id="1" onclick="print('1')">
+        <input type="button" value="2" id="2" onclick="print('2')">
+        <input type="button" value="3" id="3" onclick="print('3')">
+        <input type="button" value="X" class="ac" id="x" onclick="print('*')">
+        <input type="button" value=":" class="ac" id=":" onclick="print('/')"><br>
+        <input type="button" value="4" id="4" onclick="print('4')">
+        <input type="button" value="5" id="5" onclick="print('5')">
+        <input type="button" value="6" id="6" onclick="print('6')">
+        <input type="button" value="-" class="ac" id="-" onclick="print('-')">
+        <input type="button" value="+" class="ac" id="+" onclick="print('+')"><br>
+        <input type="button" value="7" id="7" onclick="print('7')">
+        <input type="button" value="8" id="8" onclick="print('8')">
+        <input type="button" value="9" id="9" onclick="print('9')">
+        <input type="button" value="DEL" class= "ac" id="del" onclick="tela.value=''"><br>
+        <input type="button" value="0" id="0" onclick="print(0)">
+        <input type="button" value="=" class="ac" id="igual" onclick="tela.value=eval(tela.value)">
+
+
+    </div>
+</body>
+</html>
